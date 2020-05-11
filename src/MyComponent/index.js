@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import api from './service/api';
 
 export default function MyComponent() {
   const [error, setError] = useState(null);
@@ -9,21 +10,11 @@ export default function MyComponent() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch('http://localhost:3000/items.json')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result.items);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        },
-      );
+    api.getItems().then(({ items, error }) => {
+      setIsLoaded(true);
+      setError(error);
+      setItems(items);
+    });
   }, []);
 
   if (error) {
