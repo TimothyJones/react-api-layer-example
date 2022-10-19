@@ -1,7 +1,7 @@
 React API Layer Example
 ------------------------
 
-This is a simple example repository to show what it looks like to extract the API layer from a React hook that does an AJAX request.
+This is a simple example repository to show what it looks like to extract the API layer from a React hook that does an asynchronous request.
 
 This abstraction is the first step in being able to easily test your API layers with tools like [Pact](https://pact.io)
 
